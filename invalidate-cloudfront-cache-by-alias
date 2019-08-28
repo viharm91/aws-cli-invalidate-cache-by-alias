@@ -1,0 +1,1 @@
+aws cloudfront create-invalidation --distribution-id                     $(aws cloudfront list-distributions --output json |                     jq --raw-output ".DistributionList.Items[] | select(.Aliases.Items[0] | tostring |contains(\"$BEGINS_WITH_ALIAS\")) | .Id") --paths $INVALIDATION_PATHS
